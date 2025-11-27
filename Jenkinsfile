@@ -1,31 +1,23 @@
 pipeline {
     agent { label 'java' }
-
-    stages {
-
-        stage('Checkout') {
+    stages { 
+        stage('checkout') {
             steps {
-                sh "rm -rf hello-world-war"
-                sh "git clone https://github.com/chaitanya-bob/hello-world-war"
+               sh "rm -rf hello-world-war"
+               sh "git clone https://github.com/chaitanya-bob/hello-world-war"
             }
         }
-
-        stage('Build') {
+        stage('build') {
             steps {
-                sh """
-                    cd hello-world-war
-                    mvn clean package
-                """
+               sh "mvn clean package"
             }
         }
-
-        stage('Deploy') {
+        stage('deploy') {
             steps {
-                sh """
-                   sudo cp /home/slave1/workspace/helloworld_pipelie/target/hello-world-war-1.0.0.war /opt/apache-tomcat-10.1.49/webapps/
-                """
+               sh "sudo cp /home/slave1/workspace/helloworld_pipelie/target/hello-world-war-1.0.1.war /opt/apache-tomcat-10.1.49/webapps/"
+                
             }
         }
     }
-} 
+}
 
