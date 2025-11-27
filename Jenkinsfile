@@ -22,7 +22,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh """
-                    sudo cp hello-world-war/target/hello-world-war-1.0.0.war \
+                    sudo cp /home/slave1/workspace/helloworld_pipelie/target/hello-world-war-1.0.0.war \
                     /opt/apache-tomcat-10.1.49/webapps/
                 """
             }
