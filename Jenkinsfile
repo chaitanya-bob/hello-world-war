@@ -22,11 +22,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh """
-                  + sudo cp /home/slave1/workspace/helloworld_pipelie/target/hello-world-war-1.0.0.war \
-                    /opt/apache-tomcat-10.1.49/webapps/
+                   sudo cp /home/slave1/workspace/helloworld_pipelie/target/hello-world-war-1.0.0.war /opt/apache-tomcat-10.1.49/webapps/
                 """
             }
         }
     }
-}
+} 
 
