@@ -1,6 +1,6 @@
 pipeline {
   //  agent { label 'java' }
-      agent any
+      agent none
     stages { 
         stage ('hello-world-war') {
             parallel {
