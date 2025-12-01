@@ -2,9 +2,10 @@ pipeline {
   //  agent { label 'java' }
       agent none
    parameters {
-string(name: 'cmd', defaultValue: 'default', description: 'A sample string parameter')
-booleanParam(name: 'SAMPLE_BOOLEAN', defaultValue: true, description: 'A boolean parameter')
-choice(name: 'cmd1', choices: ['install', 'compile'], description: 'Choose one option')
+string(name: 'mcd1', defaultValue: '', description: 'Enter your name')
+        booleanParam(name: 'Boolean', defaultValue: true, description: 'Enable or disable')
+        choice(name: 'mcd2', choices: ['install', 'package', 'compile'], description: 'select the choice')
+
 }
 
     stages { 
@@ -30,7 +31,7 @@ choice(name: 'cmd1', choices: ['install', 'compile'], description: 'Choose one o
         stage('build') {
             agent { label 'java' }
             steps {
-               sh "mvn clean package"
+               sh "mvn ${params.mcd1} ${params.mcd2}"
             }
         }
         stage('deploy') {
