@@ -14,11 +14,11 @@ string(name: 'mcd1', defaultValue: 'clean', description: 'maven clean command')
         stage('checkout') {
             agent { label 'java' }
             steps {
-              /*  withCredentials([usernamePassword(
+                      withCredentials([usernamePassword(
                            credentialsId: '2f7204ff-bc30-4049-9653-20116f9567b5',
                             usernameVariable: 'chaitanya-bob',
                             passwordVariable: 'chaitanya_pass'
-                       withCredentials([sshUserPrivateKey(
+                    /*   withCredentials([sshUserPrivateKey(
                             credentialsId: 'c6744ca3-8f05-4999-b666-fe83b7da220e',
                              keyFileVariable: 'chaitanya_SSH_KEY',
                              usernameVariable: 'chaitanya_SSH_USER' */
