@@ -2,7 +2,7 @@ pipeline {
   //  agent { label 'java' }
       agent none
    parameters {
-string(name: 'mcd1', defaultValue: '', description: 'Enter your name')
+string(name: 'mcd1', defaultValue: 'clean', description: 'maven clean command')
         booleanParam(name: 'Boolean', defaultValue: true, description: 'Enable or disable')
         choice(name: 'mcd2', choices: ['install', 'package', 'compile'], description: 'select the choice')
 
@@ -15,17 +15,18 @@ string(name: 'mcd1', defaultValue: '', description: 'Enter your name')
             agent { label 'java' }
             steps {
                 withCredentials([usernamePassword(
-                            credentialsId: '53798f27-0ed8-4bc5-84df-9e6c23bc5b73',
-                            usernameVariable: 'chaitanya',
-                            passwordVariable: '1234'
+                            credentialsId: '2f7204ff-bc30-4049-9653-20116f9567b5',
+                            usernameVariable: 'chaitanya-bob',
+                            passwordVariable: 'chaitanya_pass'
                      /*  withCredentials([sshUserPrivateKey(
-                            credentialsId: '3f6a9c95-2ecd-4bbe-a817-1ab975fb98d3',
+                            credentialsId: 'c6744ca3-8f05-4999-b666-fe83b7da220e',
                              keyFileVariable: 'chaitanya_SSH_KEY',
                              usernameVariable: 'chaitanya_SSH_USER' */
                         )]) {
 
                sh "rm -rf hello-world-war"
                sh "git clone https://github.com/chaitanya-bob/hello-world-war"
+             }
             }
         }
         stage('build') {
