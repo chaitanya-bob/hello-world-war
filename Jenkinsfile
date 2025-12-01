@@ -32,7 +32,7 @@ string(name: 'mcd1', defaultValue: 'clean', description: 'maven clean command')
         stage('build') {
             agent { label 'java' }
             steps {
-               sh "mvn ${params.mcd1} ${params.mcd2}"
+               sh "mvn $cmd $cmd1"
             }
         }
         stage('deploy') {
