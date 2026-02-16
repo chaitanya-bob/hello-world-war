@@ -1,19 +1,22 @@
-
 pipeline {
-   agent { label 'slave1' }
-
-    environment {
-        IMAGE_NAME = "chaitanya336699/hello-world-war-image"
-        IMAGE_TAG = "latest"
-        DOCKER_CREDS = credentials('dockerhub-creds')
+    agent {
+        docker {
+            image 'docker:latest'
+            args '-v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker'
+        }
     }
-
+ environment {
+        IMAGE_NAME = "chaitanya336699/hello-world-war-image"
+        IMAGE_TAG = "${BUILD_NUMBER}"
+        DOCKER_CREDS = credentials('dockerhub-creds')
+         HOME = "${WORKSPACE}"
+    }
     stages {
 
         stage('Checkout Code') {
             steps {
                 git branch: 'master',
-                    url:'https://github.com/chaitanya-bob/hello-world-war.git'
+                    url: 'https://github.com/Sandeepdevops22/hello-world-war.git'
             }
         }
 
@@ -42,7 +45,7 @@ pipeline {
                 sh """
                 docker stop hello-app || true
                 docker rm hello-app || true
-                docker run -d -p 8080:8080 --name hello-app ${IMAGE_NAME}:${IMAGE_TAG}
+                docker run -d -p 5050:8080 --name hello-app ${IMAGE_NAME}:${IMAGE_TAG}
                 """
             }
         }
